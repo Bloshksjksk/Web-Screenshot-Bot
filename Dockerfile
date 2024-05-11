@@ -21,6 +21,7 @@ RUN pip install poetry
 COPY . /app/
 
 # install dependencies
+RUN git clone https://github.com/lsierant/playground-docker-py.git
 RUN poetry config virtualenvs.create false && poetry install --no-dev --no-ansi
 
 # run the program
