@@ -17,6 +17,7 @@ RUN pip install poetry
 RUN pip install cachetools
 RUN pip install pyrogram
 RUN pip install asyncio
+RUN pip install dotenv
 # copy the source into the virtual space
 COPY . /app/
 
