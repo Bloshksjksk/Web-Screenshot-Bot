@@ -2,12 +2,10 @@ FROM mcr.microsoft.com/playwright/python:v1.30.0-jammy
 
 WORKDIR /app
 
-RUN apt-get update -y -q
-
-# installing chrome binary and additional fonts
-RUN apt-get install -y fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf libxss1 \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+RUN apt-get update -y -q && \
+    apt-get install -y fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf libxss1 \
+    --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
 
 ENV PIP_NO_CACHE_DIR=off \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
@@ -21,8 +19,7 @@ RUN pip install poetry
 COPY . /app/
 
 # install dependencies
-RUN git clone https://github.com/lsierant/playground-docker-py.git
-RUN poetry config virtualenvs.create false && poetry install --no-dev --no-ansi
+RUN poetry config virtualenvs.create false && poetry install
 
 # run the program
 CMD ["python", "."]
