@@ -15,7 +15,7 @@ ENV PIP_NO_CACHE_DIR=off \
 
 RUN pip install poetry
 RUN pip install cachetools
-
+RUN pip install pyrogram
 # copy the source into the virtual space
 COPY . /app/
 
