@@ -2,7 +2,7 @@ import os
 from contextlib import suppress
 from typing import Optional
 
-from dotenv import load_dotenv
+
 
 
 def init_log() -> Optional[int]:
