@@ -19,7 +19,7 @@ RUN pip install poetry
 COPY . /app/
 
 # install dependencies
-RUN poetry config virtualenvs.create false && poetry install
+#RUN poetry config virtualenvs.create false && poetry install
 
 # run the program
 CMD ["python", "."]
