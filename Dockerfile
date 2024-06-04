@@ -13,13 +13,13 @@ ENV PIP_NO_CACHE_DIR=off \
     # do not ask any interactive question
     POETRY_NO_INTERACTION=1
 
-RUN pip3 install poetry
+RUN pip install poetry
 
 # copy the source into the virtual space
 COPY . /app/
 
 # install dependencies
-RUN poetry config virtualenvs.create false && poetry install
+#RUN apt install poetry config virtualenvs.create false && poetry install
 
 # run the program
 CMD ["python", "."]
