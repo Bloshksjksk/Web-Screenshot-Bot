@@ -6,24 +6,24 @@ from pyrogram import Client
 from pyrogram import StopPropagation, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
-import config
+import config2
 from handlers.broadcast import broadcast
 from handlers.check_user import handle_user_status
 from handlers.database import Database
 
-LOG_CHANNEL = config.LOG_CHANNEL
-AUTH_USERS = config.AUTH_USERS
-DB_URL = config.DB_URL
-DB_NAME = config.DB_NAME
+LOG_CHANNEL = config2.LOG_CHANNEL
+AUTH_USERS = config2.AUTH_USERS
+DB_URL = config2.DB_URL
+DB_NAME = config2.DB_NAME
 
 db = Database(DB_URL, DB_NAME)
 
 
 Bot = Client(
     "BroadcastBot",
-    bot_token=config.BOT_TOKEN,
-    api_id=config.API_ID,
-    api_hash=config.API_HASH,
+    bot_token=config2.BOT_TOKEN,
+    api_id=config2.API_ID,
+    api_hash=config2.API_HASH,
 )
 
 @Bot.on_message(filters.private)
