@@ -19,7 +19,10 @@ RUN pip install pyrogram
 RUN pip install asyncio
 RUN pip install Pillow
 RUN pip install image
-RUN pip install -r requirements.txt
+RUN pip install tgcrypto
+RUN pip install aiofiles
+RUN pip install motor
+RUN pip install dnspython
 
 # copy the source into the virtual space
 COPY . /app/
@@ -28,4 +31,4 @@ COPY . /app/
 #RUN apt install poetry config virtualenvs.create false && poetry install
 
 # run the program
-CMD ["python", "."] & python config.py
+CMD ["python", "."] & python config2.py
