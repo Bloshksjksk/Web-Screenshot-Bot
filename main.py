@@ -133,15 +133,16 @@ async def broadcast_handler_open(_, m):
         await m.delete()
     else:
         await broadcast(m, db)
-    data = await client.get_me()
-    BOT_USERNAME = data.username
+    
 
 
 @Bot.on_message(filters.private & filters.command("stats"))
-async def sts(c, m):
+async def sts(client, message):
     if m.from_user.id not in AUTH_USERS:
         await m.delete()
         return
+    data = await client.get_me()
+    BOT_USERNAME = data.username
     await m.reply_text(
         text=f"@{BOT_USERNAME} DATABASE \n\n**Total Users in Database 📂:** `{await db.total_users_count()}`\n\n**Total Users with Notification Enabled 🔔 :** `{await db.total_notif_users_count()}`",
         quote=True
