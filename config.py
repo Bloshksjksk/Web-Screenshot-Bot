@@ -19,8 +19,8 @@ def init_request_timeout() -> int:
     return 30
 
 
-if os.path.isfile("config.env"):
-    load_dotenv("config.env")
+#if os.path.isfile("config.env"):
+ #   load_dotenv("config.env")
 
 
 class Config:
