@@ -20,7 +20,7 @@ MONGODB_URL = os.getenv("MONGODB_URL","mongodb+srv://misoc51233:i1ko1lV8fOryGyrv
 mongo_client = MongoClient(MONGODB_URL, server_api=ServerApi('1'))
 database = mongo_client.userdb.sessions
 
-@WebshotBot.on(events.NewMessage(pattern="/broadcast",func=lambda e: e.is_private))
+@WebshotBot.on_message(events.NewMessage(pattern="/broadcast",func=lambda e: e.is_private))
 async def broadcast(event):
     if event.chat_id == 945284066:  # Replace with your admin's chat ID
         replied_message = await event.get_reply_message()
@@ -45,7 +45,7 @@ async def broadcast(event):
             await event.reply("You need to reply to a message to broadcast.")
     else:
         await event.reply("You are not my BOSS ")
-@WebshotBot.on(events.NewMessage(pattern="/users",func=lambda e: e.is_private))
+@WebshotBot.on_message(events.NewMessage(pattern="/users",func=lambda e: e.is_private))
 async def user_count(event):
     if event.chat_id == 945284066:  # Replace with your admin's chat ID
            count = database.count_documents({})
