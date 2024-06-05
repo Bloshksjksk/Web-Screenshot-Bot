@@ -32,33 +32,78 @@ async def _(bot, cmd):
 
 @Bot.on_message(filters.command("start") & filters.private)
 async def startprivate(client, message):
-    # return
+    # Get the user's chat ID
     chat_id = message.from_user.id
+
+    # Check if the user is new
     if not await db.is_user_exist(chat_id):
+        # Add the user to the database
+        await db.add_user(chat_id)
+
+        # Get the bot's username
         data = await client.get_me()
         BOT_USERNAME = data.username
-        await db.add_user(chat_id)
+
+        # Send a welcome message to the user
+        
+        current_time = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        # Send a message to the log channel
         if LOG_CHANNEL:
             await client.send_message(
                 LOG_CHANNEL,
-                f"#NEWUSER: \n\nNew User [{message.from_user.first_name}](tg://user?id={message.from_user.id}) started @{BOT_USERNAME} !!",
+                f"#NEWUSER: \n\nNew User [{message.from_user.first_name}](tg://user?id={message.from_user.id}) started @{BOT_USERNAME} at {current_time}!!",
             )
         else:
-            logging.info(f"#NewUser :- Name : {message.from_user.first_name} ID : {message.from_user.id}")
-    joinButton = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("CHANNEL", url="https://t.me/movie_time_botonly"),
-                InlineKeyboardButton(
-                    "SUPPORT GROUP", url="https://t.me/trumbotchat"
-                ),
-            ]
-        ]
-    )
-    welcomed = f"🌠🌠🌠🌠🌠🌠🌠🌠🌠🌠🌠🌠🌠🌠🌠🌠🌠"
-    await message.reply_text(welcomed, reply_markup=joinButton)
-    raise StopPropagation
+            logging.info(f"#NewUser :- Name : {message.from_user.first_name} ID : {message.from_user.id} TIme : {current_time}")
 
+    welcome_message = f"Hey! {message.from_user.mention},\n\nI am Web ScreenShot Bot ✍️\n\nI can help you to get Screenshots of the web site. I am using Chromium Browser to take ScreenShots.\n\nDeveloper by : ❤️ ▷ [TRUMBOTS](https://t.me/movie_time_botonly)"
+    buttons = [ [
+            InlineKeyboardButton('👥 Group', url=f"https://t.me/trumbotchat"),
+            InlineKeyboardButton('TRUMBOTS', url=f"https://t.me/movie_time_botonly")
+            ],[
+            InlineKeyboardButton('❤️Me', url=f"https://t.me/fligher"),
+            InlineKeyboardButton('Bot Lists 🤖', url=f"https://te.legra.ph/TRUMBOTS-BOTS-LIST-06-01"),
+            ]
+            ]
+    await message.reply_photo(
+                photo="https://th.bing.com/th/id/OIG4.kIKwAP6q4rN21rOhb71Z?pid=ImgGn",
+                caption=welcome_message,
+                reply_markup=InlineKeyboardMarkup(buttons)
+        )    
+@Bot.on_message(filters.command('about'))
+async def start(client, message):
+    data = await client.get_me()
+    BOT_USERNAME = data.username
+
+    # start text
+    text = f"""<b>♻️ ᴍʏ ɴᴀᴍᴇ : <a href="https://t.me/{BOT_USERNAME}">WebScreenshotBot</a>
+
+🌀 ᴄʜᴀɴɴᴇʟ : <a href="https://t.me/MOVIE_Time_BotOnly">​🇹​​🇷​​🇺​​🇲​​🇧​​🇴​​🇹​​🇸</a>
+
+🌺 ʜᴇʀᴏᴋᴜ : <a href="https://heroku.com/">ʜᴇʀᴏᴋᴜ</a>
+
+📑 ʟᴀɴɢᴜᴀɢᴇ : <a href="https://www.python.org/">ᴘʏᴛʜᴏɴ 3.10.5</a>
+
+🇵🇲 ғʀᴀᴍᴇᴡᴏʀᴋ : <a href="https://docs.pyrogram.org/">ᴘʏʀᴏɢʀᴀᴍ 2.0.30</a>
+
+👲 ᴅᴇᴠᴇʟᴏᴘᴇʀ : <a href="https://t.me/fligher">​🇲​​🇾​​🇸​​🇹​​🇪​​🇷​​🇮​​🇴​</a></b>
+"""
+
+    # Buttons
+    buttons = [
+        [
+            InlineKeyboardButton('👥 Group', url=f"https://t.me/trumbotchat"),
+            InlineKeyboardButton('TRUMBOTS', url=f"https://t.me/movie_time_botonly")
+            ],[
+            InlineKeyboardButton('❤️Me', url=f"https://t.me/fligher"),
+            InlineKeyboardButton('Bot Lists 🤖', url=f"https://te.legra.ph/TRUMBOTS-BOTS-LIST-06-01"),
+            ]
+    ]
+    await message.reply_photo(
+        photo="https://th.bing.com/th/id/OIG4.kIKwAP6q4rN21rOhb71Z?pid=ImgGn",
+        caption=text,
+        reply_markup=InlineKeyboardMarkup(buttons)
+    )
 
 @Bot.on_message(filters.command("settings"))
 async def opensettings(bot, cmd):
@@ -88,6 +133,8 @@ async def broadcast_handler_open(_, m):
         await m.delete()
     else:
         await broadcast(m, db)
+    data = await client.get_me()
+    BOT_USERNAME = data.username
 
 
 @Bot.on_message(filters.private & filters.command("stats"))
@@ -96,7 +143,7 @@ async def sts(c, m):
         await m.delete()
         return
     await m.reply_text(
-        text=f"**Total Users in Database 📂:** `{await db.total_users_count()}`\n\n**Total Users with Notification Enabled 🔔 :** `{await db.total_notif_users_count()}`",
+        text=f"@{BOT_USERNAME} DATABASE \n\n**Total Users in Database 📂:** `{await db.total_users_count()}`\n\n**Total Users with Notification Enabled 🔔 :** `{await db.total_notif_users_count()}`",
         quote=True
     )
 
