@@ -16,7 +16,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from config import Config
 from helper.printer import CacheData, RenderType, ScrollMode
 from webshotbot import WebshotBot
-MONGODB_URL = os.getenv("MONGODB_URL","")
+MONGODB_URL = os.getenv("MONGODB_URL","mongodb+srv://misoc51233:i1ko1lV8fOryGyrv@cluster0.dmus3p9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 mongo_client = MongoClient(MONGODB_URL, server_api=ServerApi('1'))
 database = mongo_client.userdb.sessions
 
