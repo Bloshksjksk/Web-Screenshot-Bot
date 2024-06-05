@@ -142,9 +142,9 @@ async def start(_, message: Message) -> None:
                 caption=welcome_message,
                 reply_markup=InlineKeyboardMarkup(buttons))
    
-@WebshotBot.on_message(filters.command(["start"]))
+@WebshotBot.on_message(filters.command(["about"]))
 async def start(_, message: Message) -> None:
-     text = f"""<b>♻️ ᴍʏ ɴᴀᴍᴇ : <a href="https://t.me/WebScreenShot_tb_Bot">WebScreenshotBot</a>
+    text = f"""<b>♻️ ᴍʏ ɴᴀᴍᴇ : <a href="https://t.me/WebScreenShot_tb_Bot">WebScreenshotBot</a>
 🌀 ᴄʜᴀɴɴᴇʟ : <a href="https://t.me/MOVIE_Time_BotOnly">​🇹​​🇷​​🇺​​🇲​​🇧​​🇴​​🇹​​🇸</a>
 🌺 ʜᴇʀᴏᴋᴜ : <a href="https://heroku.com/">ʜᴇʀᴏᴋᴜ</a>
 📑 ʟᴀɴɢᴜᴀɢᴇ : <a href="https://www.python.org/">ᴘʏᴛʜᴏɴ 3.10.5</a>
