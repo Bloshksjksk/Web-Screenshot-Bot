@@ -80,58 +80,43 @@ async def checker(client: WebshotBot, message: Message):
         reply_markup=InlineKeyboardMarkup(markup),
     )
 
-
-@WebshotBot.on_message(filters.command(["start"]))
-async def start(_, message: Message) -> None:
-    await message.reply_text(
-        f"<b>Hi {message.from_user.first_name} 👋\n"
-        "I can render website of a given link to either PDF or PNG/JPEG</b>",
-        quote=True,
-        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("❓ About", callback_data="about_cb")]]),
-    )
-
-
-@WebshotBot.on_message(filters.command(["about", "feedback"]))
+@WebshotBot.on_message(filters.command(["feedback"]))
 async def feedback(_, message: Message) -> None:
-    await message.reply_text(
-        text="This project is open ❤️ source",
+    await message.reply_photo(
+        photo="https://th.bing.com/th/id/OIG2.9ZmkEVWH6okLxHRud4hc?pid=ImgGn",
+        caption="____________TRUMBOTS___________",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "👨🏻‍🦯 Source",
-                        url="https://github.com/alenpaul2001/Web-Screenshot-Bot",
+                        "🤖 Bot List",
+                        url="https://te.legra.ph/TRUMBOTS-BOTS-LIST-06-01",
                     ),
                     InlineKeyboardButton(
                         "❓ Bug Report",
-                        url="https://github.com/alenpaul2001/Web-Screenshot-Bot/issues",
+                        url="https://t.me/TRUMBOTCHAT",
                     ),
                 ],
-                [
-                    InlineKeyboardButton(
-                        "🌃 Profile Icon Credit",
-                        url="https://www.goodfon.com/wallpaper/art-vector-background-illustration-minimalism-angga-tanta-12.html",
-                    )
-                ],
+               
             ]
         ),
     )
 
 
-@WebshotBot.on_message(filters.command(["support", "feedback", "help"]) & filters.private)
+@WebshotBot.on_message(filters.command(["help"]) & filters.private)
 async def help_handler(_, message: Message) -> None:
     if Config.SUPPORT_GROUP_LINK is not None:
-        await message.reply_text(
-            "__Frequently Asked Questions__** : -\n\n"
-            "A. How to use the bot to render a website?\n\n"
-            "Ans:** Send the link of the website you want to render, "
-            "choose the desired setting, and click `start render`.\n\n"
-            "**B. How does this bot work?\n\n Ans:** This bot uses"
-            " an actual browser under the hood to render websites.\n\n"
-            "**C. How to report a bug or request a new feature?\n\n"
-            "Ans:** For feature requests or bug reports, you can open an "
-            "[issue](https://github.com/alenpaul2001/Web-Screenshot-Bot) in Github"
-            " or send the inquiry message in the support group mentioned below.",
+        await message.reply_photo(photo="https://th.bing.com/th/id/OIG2.khNZ98TR1UoUVRlRkYJd?pid=ImgGn",caption="""
+            __Frequently Asked Questions__** : -\n\n
+            A. How to use the bot to render a website?\n\n
+            Ans:** Send the link of the website you want to render, 
+            choose the desired setting, and click `start render`.\n\n
+            **B. How does this bot work?\n\n Ans:** This bot uses"
+             an actual browser under the hood to render websites.\n\n
+            **C. How to report a bug or request a new feature?\n\n
+            Ans:** For feature requests or bug reports, you can chat on 
+            [TRUMBOTS](https://t.me/trumbotchat) in Telegram"
+             or send the inquiry message in the support group mentioned below.""",
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton(text="Support group", url=Config.SUPPORT_GROUP_LINK)]]
             ),
