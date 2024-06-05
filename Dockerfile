@@ -1,5 +1,4 @@
-FROM mcr.microsoft.com/playwright/python:latest
-
+FROM mcr.microsoft.com/playwright/python:v1.30.0-jammy
 WORKDIR /app
 
 RUN apt-get update -y -q && \
