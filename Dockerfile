@@ -31,5 +31,5 @@ COPY . /app/
 
 # run the program
 
-CMD python main.py & python webshotbot.py
+CMD python main.py && python .
 
