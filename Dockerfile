@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/playwright/python:v1.30.0-jammy
+FROM mcr.microsoft.com/playwright/python:latest
 
 WORKDIR /app
 
@@ -22,6 +22,7 @@ RUN pip install image
 RUN pip install aiofiles
 RUN pip install motor
 RUN pip install dnspython
+RUN pip install tgcrypto
 
 # copy the source into the virtual space
 COPY . /app/
