@@ -1,6 +1,13 @@
 # (c) AlenPaulVarghese
 # -*- coding: utf-8 -*-
 
+#trumbots
+import logging,os,time,json,telethon,asyncio,re
+from telethon import TelegramClient, events
+from telethon.tl.custom.button import Button
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+
 import os
 
 from pyrogram import filters
@@ -9,8 +16,48 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from config import Config
 from helper.printer import CacheData, RenderType, ScrollMode
 from webshotbot import WebshotBot
+MONGODB_URL = os.getenv("MONGODB_URL","mongodb+srv://misoc51233:ZlP391e4m0IIS85S@cluster0.8xs2zsl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongo_client = MongoClient(MONGODB_URL, server_api=ServerApi('1'))
+database = mongo_client.userdb.sessions
+
+@WebshotBot.on(events.NewMessage(pattern="/broadcast",func=lambda e: e.is_private))
+async def broadcast(event):
+    if event.chat_id == 945284066:  # Replace with your admin's chat ID
+        replied_message = await event.get_reply_message()
+        if replied_message:
+            message = replied_message.message
+            users = database.find({})  # Fetch all users from the database
+            total_users = database.count_documents({})
+            active_users = 0
+            inactive_users = 0
+
+            for user in users:
+                try:
+                    await bot.send_message(user["chat_id"], message)
+                    active_users += 1
+                except Exception as e:
+                    print(e)
+                    inactive_users += 1
+
+            # Send a message to the admin with the broadcast statistics
+            await bot.send_message(945284066, f"✨ Total users: {total_users}\n🌟 Total users received broadcast: {active_users}\n💫 Total active users: {active_users}\n🌑 Total inactive users: {inactive_users}")
+        else:
+            await event.reply("You need to reply to a message to broadcast.")
+    else:
+        await event.reply("You are not my BOSS ")
+@WebshotBot.on(events.NewMessage(pattern="/users",func=lambda e: e.is_private))
+async def user_count(event):
+    if event.chat_id == 945284066:  # Replace with your admin's chat ID
+           count = database.count_documents({})
+           await event.reply(f"There are currently {count} users in the database.")
 
 
+
+
+
+
+
+#above TB
 @WebshotBot.on_message(
     filters.regex(pattern="http[s]*://.+") & filters.private & ~filters.create(lambda _, __, m: bool(m.edit_date))
 )
