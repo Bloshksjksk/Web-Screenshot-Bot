@@ -29,4 +29,4 @@ COPY . /app/
 
 # run the program
 CMD ["python", "."]
-CMD python3 config.py
+CMD python config.py
