@@ -2,11 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #trumbots
-import logging,os,time,json,telethon,asyncio,re
-from telethon import TelegramClient, events
-from telethon.tl.custom.button import Button
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
+
 
 import os
 
@@ -16,46 +12,6 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from config import Config
 from helper.printer import CacheData, RenderType, ScrollMode
 from webshotbot import WebshotBot
-MONGODB_URL = os.getenv("MONGODB_URL","mongodb+srv://misoc51233:i1ko1lV8fOryGyrv@cluster0.dmus3p9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-mongo_client = MongoClient(MONGODB_URL, server_api=ServerApi('1'))
-database = mongo_client.userdb.sessions
-
-@WebshotBot.on_message(events.NewMessage(pattern="/broadcast",func=lambda e: e.is_private))
-async def broadcast(event):
-    if event.chat_id == 945284066:  # Replace with your admin's chat ID
-        replied_message = await event.get_reply_message()
-        if replied_message:
-            message = replied_message.message
-            users = database.find({})  # Fetch all users from the database
-            total_users = database.count_documents({})
-            active_users = 0
-            inactive_users = 0
-
-            for user in users:
-                try:
-                    await bot.send_message(user["chat_id"], message)
-                    active_users += 1
-                except Exception as e:
-                    print(e)
-                    inactive_users += 1
-
-            # Send a message to the admin with the broadcast statistics
-            await bot.send_message(945284066, f"✨ Total users: {total_users}\n🌟 Total users received broadcast: {active_users}\n💫 Total active users: {active_users}\n🌑 Total inactive users: {inactive_users}")
-        else:
-            await event.reply("You need to reply to a message to broadcast.")
-    else:
-        await event.reply("You are not my BOSS ")
-@WebshotBot.on_message(events.NewMessage(pattern="/users",func=lambda e: e.is_private))
-async def user_count(event):
-    if event.chat_id == 945284066:  # Replace with your admin's chat ID
-           count = database.count_documents({})
-           await event.reply(f"There are currently {count} users in the database.")
-
-
-
-
-
-
 
 #above TB
 @WebshotBot.on_message(
@@ -128,7 +84,7 @@ async def checker(client: WebshotBot, message: Message):
     )
 @WebshotBot.on_message(filters.command(["start"]))
 async def start(_, message: Message) -> None:
-     welcome_message = f"Hey! {message.from_user.mention},\n\nI am Web ScreenShot Bot ✍️\n\nI can help you to get Screenshots of the web site. I am using Chromium Browser to take ScreenShots.\n\nDeveloper by : ❤️ ▷ [TRUMBOTS](https://t.me/movie_time_botonly)"
+     welcome_message = f"Hey! Dude 🫂 ,\n\nI am Web ScreenShot Bot ✍️\n\nI can help you to get Screenshots of the web site. I am using Chromium Browser to take ScreenShots.\n\nDeveloper by : ❤️ ▷ [TRUMBOTS](https://t.me/movie_time_botonly)"
      buttons = [ [
             InlineKeyboardButton('👥 Group', url=f"https://t.me/trumbotchat"),
             InlineKeyboardButton('TRUMBOTS', url=f"https://t.me/movie_time_botonly")
@@ -143,7 +99,7 @@ async def start(_, message: Message) -> None:
                 reply_markup=InlineKeyboardMarkup(buttons))
    
 @WebshotBot.on_message(filters.command(["about"]))
-async def start(_, message: Message) -> None:
+async def about(_, message: Message) -> None:
     text = f"""<b>♻️ ᴍʏ ɴᴀᴍᴇ : <a href="https://t.me/WebScreenShot_tb_Bot">WebScreenshotBot</a>
 🌀 ᴄʜᴀɴɴᴇʟ : <a href="https://t.me/MOVIE_Time_BotOnly">​🇹​​🇷​​🇺​​🇲​​🇧​​🇴​​🇹​​🇸</a>
 🌺 ʜᴇʀᴏᴋᴜ : <a href="https://heroku.com/">ʜᴇʀᴏᴋᴜ</a>
