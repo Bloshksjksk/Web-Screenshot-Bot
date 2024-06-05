@@ -120,7 +120,6 @@ async def help_handler(_, message: Message) -> None:
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton(text="Support group", url=Config.SUPPORT_GROUP_LINK)]]
             ),
-            disable_web_page_preview=True,
         )
 
 
