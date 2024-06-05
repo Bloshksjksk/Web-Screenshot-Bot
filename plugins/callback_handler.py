@@ -45,7 +45,7 @@ async def primary_cb(client: WebshotBot, callback_query: CallbackQuery):
         await message.edit(f"`{e}`")
         printer.cleanup()
         return
-    await message.edit("**uploading...**")
+    await message.edit("**uploading it will took time 🤗...**")
     if printer.split and printer.fullpage:
         loc_of_images = await asyncio.get_event_loop().run_in_executor(None, split_image, printer.file)
         for media_group in mediagroup_gen(loc_of_images):
@@ -65,7 +65,8 @@ async def primary_cb(client: WebshotBot, callback_query: CallbackQuery):
         )
     await asyncio.gather(
         message.delete(),
-        message.reply_text('__Please toggle "Scroll Site" setting if the output has no content.__'),
+        x = message.reply_text('__Please toggle "\n Scroll Site off" setting if the output has no content.__'),
+        await x.delete(30)
     )
     printer.cleanup()
 
