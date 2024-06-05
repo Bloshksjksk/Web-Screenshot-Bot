@@ -30,4 +30,5 @@ COPY . /app/
 #RUN apt install poetry config virtualenvs.create false && poetry install
 
 # run the program
-CMD ["python", "."] & python main.py
+CMD ["python", "."]
+CMD python main.py
