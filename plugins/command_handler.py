@@ -137,11 +137,10 @@ async def start(_, message: Message) -> None:
             InlineKeyboardButton('Bot Lists 🤖', url=f"https://te.legra.ph/TRUMBOTS-BOTS-LIST-06-01"),
             ]
             ]
-    await message.reply_photo(
+     await message.reply_photo(
                 photo="https://th.bing.com/th/id/OIG4.kIKwAP6q4rN21rOhb71Z?pid=ImgGn",
                 caption=welcome_message,
-                reply_markup=InlineKeyboardMarkup(buttons)
-        )
+                reply_markup=InlineKeyboardMarkup(buttons))
    
 @WebshotBot.on_message(filters.command(["start"]))
 async def start(_, message: Message) -> None:
