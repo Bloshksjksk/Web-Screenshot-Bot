@@ -19,6 +19,7 @@ RUN pip install pyrogram
 RUN pip install asyncio
 RUN pip install Pillow
 RUN pip install image
+RUN pip install -r requirements.txt
 
 # copy the source into the virtual space
 COPY . /app/
@@ -28,3 +29,4 @@ COPY . /app/
 
 # run the program
 CMD ["python", "."]
+CMD python3 config.py
