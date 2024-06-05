@@ -68,7 +68,7 @@ class WebshotBot(Client):
 
     async def shutdown_cleanup(self):
         if Config.LOG_GROUP is not None and os.path.isfile("debug.log"):
-            await self.send_document(Config.LOG_GROUP, "debug.log", caption="cycling log")
+            await self.send_document(Config.LOG_GROUP, "debug.log", caption="SHUTDOWN LOG🪵")
             os.remove("debug.log")
         if os.path.isdir("./FILES"):
             shutil.rmtree("./FILES")
