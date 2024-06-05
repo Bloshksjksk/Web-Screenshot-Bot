@@ -12,7 +12,8 @@ ENV PIP_NO_CACHE_DIR=off \
     PIP_DEFAULT_TIMEOUT=100 \
     # do not ask any interactive question
     POETRY_NO_INTERACTION=1
-
+    
+RUN pip install tgcrypto
 RUN pip install poetry
 RUN pip install cachetools
 RUN pip install pyrogram
