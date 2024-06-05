@@ -22,7 +22,6 @@ RUN pip install image
 RUN pip install aiofiles
 RUN pip install motor
 RUN pip install dnspython
-RUN pip install tgcrypto
 
 # copy the source into the virtual space
 COPY . /app/
