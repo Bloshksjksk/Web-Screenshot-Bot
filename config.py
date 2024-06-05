@@ -24,9 +24,9 @@ def init_request_timeout() -> int:
 
 
 class Config:
-    BOT_TOKEN = os.environ["BOT_TOKEN","5879463342:AAHyGLH_1VcBhjljJmLjaGzUD8upxkOUu5o"]
-    API_ID = int(os.environ["API_ID","4682685"])
-    API_HASH = os.environ["API_HASH","3eba5d471162181b8a3f7f5c0a23c307"]
+    BOT_TOKEN = os.environ.get("BOT_TOKEN","5879463342:AAHyGLH_1VcBhjljJmLjaGzUD8upxkOUu5o")
+    API_ID = int(os.environ("API_ID","4682685"))
+    API_HASH = os.environ("API_HASH","3eba5d471162181b8a3f7f5c0a23c307")
     EXEC_PATH = os.environ.get("GOOGLE_CHROME_SHIM", None)
     # OPTIONAL
     LOG_GROUP = init_log()
