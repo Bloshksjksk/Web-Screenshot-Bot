@@ -66,8 +66,9 @@ async def primary_cb(client: WebshotBot, callback_query: CallbackQuery):
     await asyncio.gather(
         message.delete(),
         x = message.reply_text('__Please toggle "\n Scroll Site off" setting if the output has no content.__'),
-        await x.delete(30)
+        
     )
+    await x.delete(30)
     printer.cleanup()
 
 
