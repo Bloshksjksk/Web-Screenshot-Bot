@@ -123,11 +123,12 @@ async def about(_, message: Message) -> None:
         caption=text,
         reply_markup=InlineKeyboardMarkup(buttons)
     )
+    
 @WebshotBot.on_message(filters.command(["feedback"]))
 async def feedback(_, message: Message) -> None:
     await message.reply_photo(
         photo="https://th.bing.com/th/id/OIG2.9ZmkEVWH6okLxHRud4hc?pid=ImgGn",
-        caption="____________TRUMBOTS___________",
+        caption="_:_TRUMBOTS_:_",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -150,13 +151,19 @@ async def feedback(_, message: Message) -> None:
 async def help_handler(_, message: Message) -> None:
     if Config.SUPPORT_GROUP_LINK is not None:
         await message.reply_photo(photo="https://th.bing.com/th/id/OIG2.khNZ98TR1UoUVRlRkYJd?pid=ImgGn",caption="""
-            __Frequently Asked Questions__** : -\n\n
-            A. How to use the bot to render a website?\n\n
+            __Frequently Asked Questions__** : -
+            A. How to use the bot to render a website?
+            
             Ans:** Send the link of the website you want to render, 
-            choose the desired setting, and click `start render`.\n\n
-            **B. How does this bot work?\n\n Ans:** This bot uses"
-             an actual browser under the hood to render websites.\n\n
-            **C. How to report a bug or request a new feature?\n\n
+            choose the desired setting, and click `start render`.
+            
+            **B. How does this bot work?
+             
+             Ans:** This bot uses"
+             an actual browser under the hood to render websites.
+             
+            **C. How to report a bug or request a new feature?
+           
             Ans:** For feature requests or bug reports, you can chat on 
             [TRUMBOTS](https://t.me/trumbotchat) in Telegram"
              or send the inquiry message in the support group mentioned below.""",
