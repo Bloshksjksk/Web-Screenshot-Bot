@@ -79,7 +79,48 @@ async def checker(client: WebshotBot, message: Message):
         text="Choose the prefered settings",
         reply_markup=InlineKeyboardMarkup(markup),
     )
+@WebshotBot.on_message(filters.command(["start"]))
+async def start(_, message: Message) -> None:
+     welcome_message = f"Hey! {message.from_user.mention},\n\nI am Web ScreenShot Bot ✍️\n\nI can help you to get Screenshots of the web site. I am using Chromium Browser to take ScreenShots.\n\nDeveloper by : ❤️ ▷ [TRUMBOTS](https://t.me/movie_time_botonly)"
+     buttons = [ [
+            InlineKeyboardButton('👥 Group', url=f"https://t.me/trumbotchat"),
+            InlineKeyboardButton('TRUMBOTS', url=f"https://t.me/movie_time_botonly")
+            ],[
+            InlineKeyboardButton('❤️Me', url=f"https://t.me/fligher"),
+            InlineKeyboardButton('Bot Lists 🤖', url=f"https://te.legra.ph/TRUMBOTS-BOTS-LIST-06-01"),
+            ]
+            ]
+    await message.reply_photo(
+                photo="https://th.bing.com/th/id/OIG4.kIKwAP6q4rN21rOhb71Z?pid=ImgGn",
+                caption=welcome_message,
+                reply_markup=InlineKeyboardMarkup(buttons)
+        )
+   
+@WebshotBot.on_message(filters.command(["start"]))
+async def start(_, message: Message) -> None:
+     text = f"""<b>♻️ ᴍʏ ɴᴀᴍᴇ : <a href="https://t.me/WebScreenShot_tb_Bot">WebScreenshotBot</a>
+🌀 ᴄʜᴀɴɴᴇʟ : <a href="https://t.me/MOVIE_Time_BotOnly">​🇹​​🇷​​🇺​​🇲​​🇧​​🇴​​🇹​​🇸</a>
+🌺 ʜᴇʀᴏᴋᴜ : <a href="https://heroku.com/">ʜᴇʀᴏᴋᴜ</a>
+📑 ʟᴀɴɢᴜᴀɢᴇ : <a href="https://www.python.org/">ᴘʏᴛʜᴏɴ 3.10.5</a>
+🇵🇲 ғʀᴀᴍᴇᴡᴏʀᴋ : <a href="https://docs.pyrogram.org/">ᴘʏʀᴏɢʀᴀᴍ 2.0.30</a>
+👲 ᴅᴇᴠᴇʟᴏᴘᴇʀ : <a href="https://t.me/fligher">​🇲​​🇾​​🇸​​🇹​​🇪​​🇷​​🇮​​🇴​</a></b>
+"""
 
+    # Buttons
+    buttons = [
+        [
+            InlineKeyboardButton('👥 Group', url=f"https://t.me/trumbotchat"),
+            InlineKeyboardButton('TRUMBOTS', url=f"https://t.me/movie_time_botonly")
+            ],[
+            InlineKeyboardButton('❤️Me', url=f"https://t.me/fligher"),
+            InlineKeyboardButton('Bot Lists 🤖', url=f"https://te.legra.ph/TRUMBOTS-BOTS-LIST-06-01"),
+            ]
+    ]
+    await message.reply_photo(
+        photo="https://th.bing.com/th/id/OIG4.kIKwAP6q4rN21rOhb71Z?pid=ImgGn",
+        caption=text,
+        reply_markup=InlineKeyboardMarkup(buttons)
+    )
 @WebshotBot.on_message(filters.command(["feedback"]))
 async def feedback(_, message: Message) -> None:
     await message.reply_photo(
