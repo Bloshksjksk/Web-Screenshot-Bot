@@ -18,6 +18,10 @@ RUN pip install cachetools
 RUN pip install asyncio
 RUN pip install Pillow
 RUN pip install image
+RUN pip install pymongo
+RUN pip install telethon
+RUN pip install motor
+RUN pip install dnspython
 
 # copy the source into the virtual space
 COPY . /app/
