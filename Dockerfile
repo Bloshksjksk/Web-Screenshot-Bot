@@ -15,13 +15,9 @@ ENV PIP_NO_CACHE_DIR=off \
 RUN pip install TgCrypto
 RUN pip install poetry
 RUN pip install cachetools
-RUN pip install pyrogram
 RUN pip install asyncio
 RUN pip install Pillow
 RUN pip install image
-RUN pip install aiofiles
-RUN pip install motor
-RUN pip install dnspython
 
 # copy the source into the virtual space
 COPY . /app/
